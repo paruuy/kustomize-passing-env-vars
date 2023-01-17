@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  MYAPP
+  labels:
+    app:  MYAPP
+spec:
+  selector:
+    matchLabels:
+      app: MYAPP
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name:  MYAPP
+        image:  nginx
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: DB_HOST
+          value: DB_HOST
+        ports:
+        - containerPort:  80
+          name:  MYAPP
+      restartPolicy: Always
